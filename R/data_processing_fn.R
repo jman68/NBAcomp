@@ -3,6 +3,7 @@
 #' @param year integer denoting year between [1947] and [2022]
 #' @return list of active NBA players
 #'
+#' @export
 getPlayers <- function(year) {
   pergURL <- paste("http://www.basketball-reference.com/leagues/NBA_", year, "_per_game.html", sep="")
   perg <- pergURL %>% read_html() %>% html_table()
@@ -16,6 +17,7 @@ getPlayers <- function(year) {
 #' @param player string denoting NBA player
 #' @return string denoting [www.basketball-reference.com] web URL
 #'
+#' @export
 getURL <- function(player) {
   # clean player names
   player <- tolower(unlist(strsplit(player, " ")))
@@ -61,6 +63,7 @@ getURL <- function(player) {
 #' @param flag integer denoting which table to retrieve (2 = per game stats, 4 = per 36 stats). defaults to 2
 #' @return string denoting [www.basketball-reference.com] web URL
 #'
+#' @export
 getStatsTable <- function(player, flag=2) {
   player_url <- getURL(player)
   player_df <- player_url %>% read_html() %>% html_table()
@@ -79,6 +82,7 @@ getStatsTable <- function(player, flag=2) {
 #' @param year integer denoting year to get game logs
 #' @return string denoting [www.basketball-reference.com] web URL
 #'
+#' @export
 getGameLog <- function(player, year) {
   player_url <- getURL(player)
   base_url <- substr(player_url,1,nchar(player_url)-5)
@@ -107,6 +111,7 @@ getGameLog <- function(player, year) {
 #' @param year integer denoting year to get game logs
 #' @return string denoting [www.basketball-reference.com] web URL
 #'
+#' @export
 getPlayerImage <- function(player) {
   player_url <- getURL(player)
   imgsrc <- read_html(player_url) %>%

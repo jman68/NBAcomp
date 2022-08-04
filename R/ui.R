@@ -67,7 +67,7 @@ ui <- dashboardPage(
           box(
             width = 12,
             solidHeader = TRUE,
-            DT::dataTableOutput("table")
+            DT::dataTableOutput("table_career_stats")
           )
         )
       ),
@@ -76,7 +76,7 @@ ui <- dashboardPage(
           box(
             width = 12,
             solidHeader = TRUE,
-            DT::dataTableOutput("table2")
+            DT::dataTableOutput("table_game_logs")
           )
         )
       ),
@@ -89,9 +89,22 @@ ui <- dashboardPage(
             selectInput('stats', 'Stat to compare:', "PTS")
           ),
           box(
-            width = 12,
+            width = 8,
             solidHeader = TRUE,
             plotOutput("plot1")
+          )
+        ),
+        fluidRow(
+          box(
+            width = 4,
+            solidHeader = TRUE,
+            title = "Comparison Statistic",
+            selectInput('stats2', 'Stat to compare:', "AST")
+          ),
+          box(
+            width = 8,
+            solidHeader = TRUE,
+            plotOutput("plot2")
           )
         )
       )
